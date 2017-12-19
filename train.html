@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Train Schedule</title>
+	<!--Linking Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<!--Linking jquery-->
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+  	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+   	crossorigin="anonymous"></script>
+	<!--Linking Bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!--Linking css-->
+	<link rel="stylesheet" type="text/css" href="assets/css/train.css">
+
+
+</head>
+
+<body>
+
+	<div class="header">
+		<h1 class="title">Train Schedule!</h1>
+	</div>
+
+	<br>
+	<br>
+	<br>
+
+	<table class="table table-striped">
+  		<thead>
+   			<tr class="heading-row">
+      			<th scope="col">Train Name</th>
+      			<th scope="col">Destination</th>
+      			<th scope="col">Frequency (min)</th>
+      			<th scope="col">Next Arrival</th>
+      			<th scope="col">Minutes Away</th>
+    		</tr>
+    	</thead>
+
+    	<tbody class="Chart-Content">
+    		<tr class="row-1">
+    			<th scope="col" class="train-name">Row</th>
+    			<th scope="col" class="destination-name">Row 2</th>
+    			<th scope="col" class="frequency">Row 3</th>
+    			<th scope="col" class="next-arrive">Row 4</th>
+    			<th scope="col" class="time-btwn">Row 5</th> 
+    		</tr>   	
+		</tbody>
+	</table>
+
+	<div class="enter-info-form">
+		<div class="input-heading">
+			<p class="input-text">Add Train</p>
+		</div>
+
+		<div class="input-content">
+			<form class="form-input">
+  				Train Name<br>
+  				<input type="text" class="form-entry" id="trainName"><br>
+  				Destination<br>
+  				<input type="text" class="form-entry" id="destination"><br>
+  				First Train Time (HH-mm - Military Time)<br>
+  				<input type="text" class="form-entry" id="trainTime"><br>
+  				Frequency (min)<br>
+  				<input type="text" class="form-entry" id="frequency"><br>
+			</form>
+
+			<button class="submit">Submit</button>
+
+		</div>
+	</div>
+
+	<!--Linking js-->
+	<script src="assets/javascript/train.js"></script>
+
+</body>
+</html>
+
+
+
+
+</body>
+</html>
