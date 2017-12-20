@@ -40,16 +40,7 @@ $(document).ready(function () {
 		trainName = $('#trainName').val().trim()
 		destination = $('#destination').val().trim()
 		frequency = $('#frequency').val().trim()
-		firstTrainTime = $('#trainTime').val(moment(firstTrainTime).format("h:mm")).trim()
-		console.log(firstTrainTime)
-		
-
-		
-
-
-
-
-		minAway = firstTrainTime +  frequency
+		firstTrainTime = $('#trainTime').val().trim()
 
 
 
