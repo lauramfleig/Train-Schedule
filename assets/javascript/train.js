@@ -1,14 +1,4 @@
 
-function addNewRow(){
-	var newRow = $('<tr>')
-	newRow.addClass('new-row')
-	$('.Chart-Content').append(newRow)
-	var thScope = $('<th scope = "col">')
-	newRow.append(thScope)
-
-}
-
-
 
 $(document).ready(function () {
 
@@ -33,7 +23,7 @@ $(document).ready(function () {
 	var destination = ""
 	var firstTrainTime = 0
 	var frequency = 0
-	var minAway = 0
+	var tMinutesTillTrain = 0
 
 	$('.submit').on('click', function(event){
 		event.preventDefault()
@@ -42,14 +32,30 @@ $(document).ready(function () {
 		frequency = $('#frequency').val().trim()
 		firstTrainTime = $('#trainTime').val().trim()
 
+		var firstTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years")
+    	console.log(firstTimeConverted);
 
+    	var currentTime = moment();
+    	console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm a"));
+
+    	var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    	console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    	var tRemainder = diffTime % frequency;
+    	console.log(tRemainder);
+
+    	var tMinutesTillTrain = frequency - tRemainder;
+   		console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+   		var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    	console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm, a"));
 
 		database.ref().push({
 			Name: trainName,
         	Destination: destination,
         	Frequency: frequency,
         	FirstTrain: firstTrainTime,
-        	MinutesAway: minAway,
+        	MinutesAway: tMinutesTillTrain,
 
         });
 
