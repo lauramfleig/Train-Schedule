@@ -4,7 +4,9 @@ body {
 
 
 .header {
-	background-color: blue;
+	background-image: url(../images/train-header.jpeg);
+    background-size: 100%;
+    background-repeat: no-repeat;
     width: 900px;
     height: 275px;
     text-align: center;
