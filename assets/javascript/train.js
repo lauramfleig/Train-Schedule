@@ -33,24 +33,57 @@ $(document).ready(function () {
 		frequency = $('#frequency').val().trim()
 		firstTrainTime = $('#trainTime').val().trim()
 
-		var firstTimeConverted = moment(firstTrainTime, "h:mm a")
-    	var currentTime = moment();
- 
-		//If the current time occurs before the first train time
-		if (firstTimeConverted > currentTime) {
-
-    		var diffTime = moment(firstTimeConverted).diff(moment(), 'minutes')
-
 			database.ref().push({
 				Name: trainName,
         		Destination: destination,
         		Frequency: frequency,
         		FirstTrain: firstTrainTime,
-        		MinutesAway: diffTime
+ 
 
         	})
 
-		} else {
+
+		// } else {
+
+		// 	var firstTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years")
+
+  //   		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+
+  //   		var tRemainder = diffTime % frequency;
+
+  //   		var tMinutesTillTrain = frequency - tRemainder;
+
+  //  			var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+
+		// 	database.ref().push({
+		// 		Name: trainName,
+  //       		Destination: destination,
+  //       		Frequency: frequency,
+  //       		FirstTrain: firstTrainTime,
+  //       		MinutesAway: tMinutesTillTrain,
+
+  //       	})
+
+		// }
+
+    });
+
+	database.ref().on("child_added", function(snapshot) {
+
+		var firstTrainTime = snapshot.val().FirstTrain
+
+		var frequency = snapshot.val().Frequency
+
+		var firstTimeConverted = moment(firstTrainTime, "h:mm a")
+  		var currentTime = moment();
+ 
+		//If the current time occurs before the first train time
+		if (firstTimeConverted > currentTime) {
+
+  			var diffTime = moment(firstTimeConverted).diff(moment(), 'minutes')
+
+  		} else {
+//Subtract first train time + frequency from current time
 
 			var firstTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years")
 
@@ -62,20 +95,22 @@ $(document).ready(function () {
 
    			var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 
-			database.ref().push({
-				Name: trainName,
-        		Destination: destination,
-        		Frequency: frequency,
-        		FirstTrain: firstTrainTime,
-        		MinutesAway: tMinutesTillTrain,
+   			var nextArrival = firstTimeConverted
 
-        	})
+   			frequency = moment(frequency).format('mm')
+   			console.log(frequency)
+
+   				// while (nextArrival < currentTime) {
+
+   				// 	moment(frequency)
+
+   				// }
+			
 
 		}
 
-    });
 
-	database.ref().on("child_added", function(snapshot) {
+
    
 		var newRow = $('<tr>')
 		newRow.addClass('new-row')
@@ -97,7 +132,7 @@ $(document).ready(function () {
 
 		var thScope5 = $('<th>')
 		thScope5.attr('scope', 'col')
-		thScope5.text(snapshot.val().MinutesAway)
+		thScope5.text(diffTime)
 
 
 		newRow.append(thScope)
