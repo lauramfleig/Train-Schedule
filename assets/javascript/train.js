@@ -42,30 +42,6 @@ $(document).ready(function () {
 
         	})
 
-
-		// } else {
-
-		// 	var firstTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years")
-
-  //   		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-
-  //   		var tRemainder = diffTime % frequency;
-
-  //   		var tMinutesTillTrain = frequency - tRemainder;
-
-  //  			var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-
-		// 	database.ref().push({
-		// 		Name: trainName,
-  //       		Destination: destination,
-  //       		Frequency: frequency,
-  //       		FirstTrain: firstTrainTime,
-  //       		MinutesAway: tMinutesTillTrain,
-
-  //       	})
-
-		// }
-
     });
 
 	database.ref().on("child_added", function(snapshot) {
@@ -85,26 +61,27 @@ $(document).ready(function () {
   		} else {
 //Subtract first train time + frequency from current time
 
-			var firstTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years")
+			// var firstTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years")
 
-    		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+   //  		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
 
-    		var tRemainder = diffTime % frequency;
+   //  		var tRemainder = diffTime % frequency;
 
-    		var tMinutesTillTrain = frequency - tRemainder;
+   //  		var tMinutesTillTrain = frequency - tRemainder;
 
-   			var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+   		var firstTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years")
+  
+        
+     	var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+  
+ 		var tRemainder = diffTime % frequency;
+  
+		var tMinutesTillTrain = frequency - tRemainder;
+  
+  		var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+   			
 
-   			var nextArrival = firstTimeConverted
-
-   			frequency = moment(frequency).format('mm')
-   			console.log(frequency)
-
-   				// while (nextArrival < currentTime) {
-
-   				// 	moment(frequency)
-
-   				// }
+   			//the next arrival is the first arrival 
 			
 
 		}
